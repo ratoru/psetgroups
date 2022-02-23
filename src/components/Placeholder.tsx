@@ -16,7 +16,7 @@
 */
 export const Placeholder: React.FC = () => {
   return (
-    <div className="py-20 mx-auto max-w-6xl">
+    <div className="py-20 px-6 mx-auto max-w-6xl">
       <div>
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
@@ -33,7 +33,7 @@ export const Placeholder: React.FC = () => {
           <div className="mt-5 md:col-span-2 md:mt-0">
             <form action="#" method="POST">
               <div className="shadow sm:overflow-hidden sm:rounded-md">
-                <div className="py-5 px-4 space-y-6 bg-white sm:p-6">
+                <div className="py-5 px-4 space-y-6 bg-gray-50 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-3 sm:col-span-2">
                       <label
@@ -144,7 +144,7 @@ export const Placeholder: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="py-3 px-4 text-right bg-gray-50 sm:px-6">
+                <div className="py-3 px-4 text-right bg-gray-100 sm:px-6">
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
@@ -159,7 +159,7 @@ export const Placeholder: React.FC = () => {
       </div>
 
       <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
+        <div className="py-5 mt-20">
           <div className="border-t border-gray-200" />
         </div>
       </div>
@@ -179,7 +179,7 @@ export const Placeholder: React.FC = () => {
           <div className="mt-5 md:col-span-2 md:mt-0">
             <form action="#" method="POST">
               <div className="overflow-hidden shadow sm:rounded-md">
-                <div className="py-5 px-4 bg-white sm:p-6">
+                <div className="py-5 px-4 bg-gray-50 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-3">
                       <label
@@ -313,7 +313,7 @@ export const Placeholder: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="py-3 px-4 text-right bg-gray-50 sm:px-6">
+                <div className="py-3 px-4 text-right bg-gray-100 sm:px-6">
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
@@ -328,7 +328,7 @@ export const Placeholder: React.FC = () => {
       </div>
 
       <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
+        <div className="py-5 mt-20">
           <div className="border-t border-gray-200" />
         </div>
       </div>
@@ -348,7 +348,7 @@ export const Placeholder: React.FC = () => {
           <div className="mt-5 md:col-span-2 md:mt-0">
             <form action="#" method="POST">
               <div className="overflow-hidden shadow sm:rounded-md">
-                <div className="py-5 px-4 space-y-6 bg-white sm:p-6">
+                <div className="py-5 px-4 space-y-6 bg-gray-50 sm:p-6">
                   <fieldset>
                     <legend className="text-base font-medium text-gray-900">
                       By Email
@@ -476,7 +476,7 @@ export const Placeholder: React.FC = () => {
                     </div>
                   </fieldset>
                 </div>
-                <div className="py-3 px-4 text-right bg-gray-50 sm:px-6">
+                <div className="py-3 px-4 text-right bg-gray-100 sm:px-6">
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"

@@ -3,5 +3,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'), // eslint-disable-line global-require
+  ],
 };
