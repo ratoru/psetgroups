@@ -59,6 +59,7 @@ export const DropDownMenu = (props: Props) => {
                   item.icon ? 'flex justify-center items-center' : 'block'
                 } py-4 text-xl text-gray-900 hover:shadow-lg rounded-lg hover:text-gray-900`}
                 role="menuitem"
+                onClick={() => setIsOpen(false)}
               >
                 <img src={`${item.icon}`} alt="" className="mr-4 w-12 h-12" />
 

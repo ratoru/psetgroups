@@ -24,18 +24,22 @@ const Main = (props: IMainProps) => (
         </Link>
 
         <nav className="hidden justify-center items-center space-x-5 text-base md:flex">
-          <a
-            href="#feat"
-            className="relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out"
-          >
-            Features
-          </a>
-          <a
-            href="#faq"
-            className="group relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out"
-          >
-            FAQ
-          </a>
+          <Link href="/#feat">
+            <a
+              href="#feat"
+              className="relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out"
+            >
+              Features
+            </a>
+          </Link>
+          <Link href="/#faq">
+            <a
+              href="#faq"
+              className="group relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out"
+            >
+              FAQ
+            </a>
+          </Link>
           <Link href="https://github.com/ratoru">
             <a className="group relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out">
               Source
@@ -58,7 +62,7 @@ const Main = (props: IMainProps) => (
               },
               {
                 label: 'Source',
-                link: 'https://github.com/ratoru',
+                link: 'https://github.com/ratoru/psetgroups',
                 icon: 'assets/icons/code.svg',
               },
             ]}
@@ -81,7 +85,7 @@ const Main = (props: IMainProps) => (
           © {new Date().getFullYear()} {AppConfig.title}
         </p>
         <span className="inline-flex justify-center mt-4 space-x-5 sm:justify-start sm:mt-0 sm:ml-auto">
-          <Link href="https://github.com/ratoru">
+          <Link href="https://github.com/ratoru/psetgroups">
             <a className="text-gray-400 hover:text-gray-500">
               <span className="sr-only">GitHub</span>
               <svg
