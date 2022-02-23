@@ -25,18 +25,12 @@ const Main = (props: IMainProps) => (
 
         <nav className="hidden justify-center items-center space-x-5 text-base md:flex">
           <Link href="/#feat">
-            <a
-              href="#feat"
-              className="relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out"
-            >
+            <a className="relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out">
               Features
             </a>
           </Link>
           <Link href="/#faq">
-            <a
-              href="#faq"
-              className="group relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out"
-            >
+            <a className="group relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out">
               FAQ
             </a>
           </Link>
