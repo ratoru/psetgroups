@@ -1,8 +1,6 @@
-import { useState } from 'react';
-
 import { RadioGroup } from '@headlessui/react';
 
-interface Option {
+export interface Option {
   name: string;
   val: string | number;
   description?: string;
@@ -11,14 +9,19 @@ interface Option {
 interface RadioProps {
   label: string;
   options: Option[];
+  selected: Option | undefined;
+  onClick: (sel: Option) => void;
 }
 
-export const Radio: React.FC<RadioProps> = ({ label, options }) => {
-  const [selected, setSelected] = useState(options[0]);
-
+export const Radio: React.FC<RadioProps> = ({
+  label,
+  options,
+  selected,
+  onClick,
+}) => {
   return (
     <div className="w-full">
-      <RadioGroup value={selected} onChange={setSelected}>
+      <RadioGroup value={selected} onChange={onClick}>
         <RadioGroup.Label className="block mb-2 text-sm font-medium text-gray-700">
           {label}
         </RadioGroup.Label>

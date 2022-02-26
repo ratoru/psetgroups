@@ -1,19 +1,7 @@
-/*
-  This component requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+import { useState } from 'react';
+
 import { Availabilty } from './Availability';
-import { Radio } from './Radio';
+import { Radio, Option } from './Radio';
 
 const days = [
   'Monday',
@@ -25,7 +13,18 @@ const days = [
   'Sunday',
 ];
 
-const releaseOptions = [
+const dorms: string[] = [
+  'Wilbur',
+  'Stern',
+  'Flomo',
+  'EVGR A',
+  'Roble',
+  'The Row',
+];
+
+const years: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Grad'];
+
+const startOptions: Option[] = [
   {
     name: 'Early',
     val: -1,
@@ -43,7 +42,7 @@ const releaseOptions = [
   },
 ];
 
-const workstyleOptions = [
+const workstyleOptions: Option[] = [
   {
     name: 'Together',
     val: -1,
@@ -61,7 +60,7 @@ const workstyleOptions = [
   },
 ];
 
-const communicationOptions = [
+const communicationOptions: Option[] = [
   {
     name: 'In Person',
     val: -1,
@@ -95,6 +94,15 @@ interface PreferencesFormProps {
 export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   onClick,
 }) => {
+  const [sunet, setSunet] = useState<string>('');
+  const [year, setYear] = useState(years[0]);
+  const [dorm, setDorm] = useState(dorms[0]);
+  const [code, setCode] = useState<string>('');
+
+  const [start, setStart] = useState<Option | undefined>();
+  const [workstyle, setWorkstyle] = useState<Option | undefined>();
+  const [communication, setCommunication] = useState<Option | undefined>();
+
   return (
     <form action="#" method="POST" className="py-20 px-6 mx-auto max-w-6xl">
       <div>
@@ -127,6 +135,8 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                         id="sunet-id"
                         className="block flex-1 w-full rounded-none rounded-l-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         placeholder="jane"
+                        value={sunet}
+                        onChange={(e) => setSunet(e.target.value)}
                       />
                       <span className="inline-flex items-center px-3 text-sm text-gray-500 bg-gray-50 rounded-r-md border border-l-0 border-gray-300">
                         @stanford.edu
@@ -146,12 +156,16 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                     id="year"
                     name="year"
                     className="block py-2 px-3 mt-1 w-full bg-white rounded-md border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 shadow-sm sm:text-sm"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
                   >
-                    <option>Freshman</option>
-                    <option>Sophomore</option>
-                    <option>Junior</option>
-                    <option>Senior</option>
-                    <option>Grad</option>
+                    {years.map((y) => {
+                      return (
+                        <option value={y} key={y}>
+                          {y}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
 
@@ -169,13 +183,16 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                     id="dorm"
                     name="dorm"
                     className="block py-2 px-3 mt-2 w-full bg-white rounded-md border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 shadow-sm sm:text-sm"
+                    value={dorm}
+                    onChange={(e) => setDorm(e.target.value)}
                   >
-                    <option>Wilbur</option>
-                    <option>Stern</option>
-                    <option>EVGR A</option>
-                    <option>The Row</option>
-                    <option>Roble</option>
-                    <option>FloMo</option>
+                    {dorms.map((d) => {
+                      return (
+                        <option value={d} key={d}>
+                          {d}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
 
@@ -194,6 +211,8 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                     name="class-code"
                     id="class-code"
                     className="block mt-2 w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm sm:text-sm"
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
                   />
                 </div>
               </div>
@@ -226,15 +245,21 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
               <div className="py-5 px-4 space-y-6 bg-gray-50 sm:p-6">
                 <Radio
                   label="When do you start the pset?"
-                  options={releaseOptions}
+                  options={startOptions}
+                  selected={start}
+                  onClick={setStart}
                 />
                 <Radio
                   label="What's your collaboration style?"
                   options={workstyleOptions}
+                  selected={workstyle}
+                  onClick={setWorkstyle}
                 />
                 <Radio
                   label="Preferred Communication"
                   options={communicationOptions}
+                  selected={communication}
+                  onClick={setCommunication}
                 />
               </div>
             </div>
@@ -294,7 +319,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
           <div className="flex justify-center items-center mt-5 md:col-span-2 md:mt-0">
             <button
               type="submit"
-              className="inline-flex justify-center py-2 px-6 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
+              className="inline-flex justify-center py-2 px-6 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
               onClick={(e) => {
                 e.preventDefault();
                 onClick(true);
