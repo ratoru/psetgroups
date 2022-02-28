@@ -1,16 +1,19 @@
 import { useState } from 'react';
 
-import { Availabilty } from './Availability';
+import { AvailabiltyGrid } from './AvailabilityGrid';
 import { Radio, Option } from './Radio';
 
-const days = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+const times = [
+  '8-10',
+  '10-12',
+  '12-14',
+  '14-16',
+  '16-18',
+  '18-20',
+  '20-22',
+  '22-24',
 ];
 
 const dorms: string[] = [
@@ -75,17 +78,41 @@ const communicationOptions: Option[] = [
   },
 ];
 
-// commitmentOptions = [
-//   ("1", "I'm still shopping and/or not registered"),
-//   ("2", "Other courses might be a higher priority"),
-//   ("3", "This course is a top priority for me"),
-// ]
+const commitmentOptions: Option[] = [
+  {
+    name: 'Low',
+    val: -1,
+    description: "I'm still shopping and/or not registered",
+  },
+  {
+    name: 'Medium',
+    val: 0,
+    description: 'Other courses might be a higher priority',
+  },
+  {
+    name: 'High',
+    val: 1,
+    description: 'This course is a top priority for me',
+  },
+];
 
-// confidence_options = [
-//   ("1", "This will be all new for me"),
-//   ("2", "I have seen some of this material before"),
-//   ("3", "I am quite comfortable with this material"),
-//   ]
+const expertiseOptions: Option[] = [
+  {
+    name: 'Beginner',
+    val: -1,
+    description: 'This will be all new for me',
+  },
+  {
+    name: 'Average Joe',
+    val: 0,
+    description: 'I have seen some of this material before',
+  },
+  {
+    name: 'Seasoned',
+    val: 1,
+    description: 'I am quite comfortable with this material',
+  },
+];
 
 interface PreferencesFormProps {
   onClick: (val: boolean) => void;
@@ -102,6 +129,15 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   const [start, setStart] = useState<Option | undefined>();
   const [workstyle, setWorkstyle] = useState<Option | undefined>();
   const [communication, setCommunication] = useState<Option | undefined>();
+  const [commitment, setCommitment] = useState<Option | undefined>();
+  const [expertise, setExpertise] = useState<Option | undefined>();
+
+  const avTimes = times.map(() => {
+    return days.map(() => {
+      return 0;
+    });
+  });
+  const [availableTimes, setAvailableTimes] = useState<number[][]>(avTimes);
 
   return (
     <form action="#" method="POST" className="py-20 px-6 mx-auto max-w-6xl">
@@ -261,6 +297,18 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                   selected={communication}
                   onClick={setCommunication}
                 />
+                <Radio
+                  label="What's your commitment level?"
+                  options={commitmentOptions}
+                  selected={commitment}
+                  onClick={setCommitment}
+                />
+                <Radio
+                  label="How comfortable are you in the class?"
+                  options={expertiseOptions}
+                  selected={expertise}
+                  onClick={setExpertise}
+                />
               </div>
             </div>
           </div>
@@ -289,9 +337,12 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
           <div className="mt-5 md:col-span-2 md:mt-0">
             <div className="overflow-hidden shadow sm:rounded-md">
               <div className="py-5 px-4 space-y-6 bg-gray-50 sm:p-6">
-                {days.map((day) => (
-                  <Availabilty day={day} key={day} />
-                ))}
+                <AvailabiltyGrid
+                  days={days}
+                  times={times}
+                  availableTimes={availableTimes}
+                  onClick={setAvailableTimes}
+                />
               </div>
             </div>
           </div>

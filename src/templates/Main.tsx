@@ -34,7 +34,7 @@ const Main = (props: IMainProps) => (
               FAQ
             </a>
           </Link>
-          <Link href="https://github.com/ratoru">
+          <Link href="https://github.com/ratoru/psetgroups">
             <a className="group relative font-medium leading-6 text-gray-600 hover:text-gray-900 hover:underline hover:underline-offset-8 transition duration-150 ease-out">
               Source
             </a>
