@@ -114,6 +114,18 @@ const expertiseOptions: Option[] = [
   },
 ];
 
+function checkSubmission(values: Array<any | undefined>): boolean {
+  for (let i = 0, l = values.length; i < l; i += 1) {
+    if (values[i] === undefined) {
+      return false;
+    }
+    if (typeof values[i] === 'string' && values[i] === '') {
+      return false;
+    }
+  }
+  return true;
+}
+
 interface PreferencesFormProps {
   onClick: (val: boolean) => void;
 }
@@ -138,6 +150,44 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
     });
   });
   const [availableTimes, setAvailableTimes] = useState<number[][]>(avTimes);
+
+  let button: JSX.Element;
+  if (
+    checkSubmission([
+      sunet,
+      year,
+      dorm,
+      code,
+      start,
+      workstyle,
+      communication,
+      commitment,
+      expertise,
+    ])
+  ) {
+    button = (
+      <button
+        type="submit"
+        className="inline-flex justify-center py-2 px-6 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
+        onClick={(e) => {
+          e.preventDefault();
+          onClick(true);
+        }}
+      >
+        Save
+      </button>
+    );
+  } else {
+    button = (
+      <button
+        type="submit"
+        className="inline-flex justify-center py-2 px-6 text-lg font-medium text-white bg-gray-600 rounded-md border border-transparent shadow-sm"
+        disabled
+      >
+        Save
+      </button>
+    );
+  }
 
   return (
     <form action="#" method="POST" className="py-20 px-6 mx-auto max-w-6xl">
@@ -368,16 +418,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
             </div>
           </div>
           <div className="flex justify-center items-center mt-5 md:col-span-2 md:mt-0">
-            <button
-              type="submit"
-              className="inline-flex justify-center py-2 px-6 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
-              onClick={(e) => {
-                e.preventDefault();
-                onClick(true);
-              }}
-            >
-              Save
-            </button>
+            {button}
           </div>
         </div>
       </div>
