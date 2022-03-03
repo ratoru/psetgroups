@@ -133,7 +133,8 @@ interface PreferencesFormProps {
 export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   onClick,
 }) => {
-  const [sunet, setSunet] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  // const [sunet, setSunet] = useState<string>('');
   const [year, setYear] = useState(years[0]);
   const [dorm, setDorm] = useState(dorms[0]);
   const [code, setCode] = useState<string>('');
@@ -154,7 +155,8 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   let button: JSX.Element;
   if (
     checkSubmission([
-      sunet,
+      name,
+      // sunet,
       year,
       dorm,
       code,
@@ -207,6 +209,22 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
             <div className="shadow sm:overflow-hidden sm:rounded-md">
               <div className="py-5 px-4 space-y-6 bg-gray-50 sm:p-6">
                 <div className="grid grid-cols-3 gap-6">
+                  <div className="col-span-3 w-4/5 md:w-1/2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name="class-code"
+                      id="class-code"
+                      className="block mt-2 w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm sm:text-sm"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
                   <div className="col-span-3 sm:col-span-2">
                     <label
                       htmlFor="sunet-id"
@@ -214,8 +232,11 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                     >
                       SUNet ID
                     </label>
+                    <p className="text-sm text-gray-500">
+                      This is a later feature.
+                    </p>
                     <div className="flex mt-1 rounded-md shadow-sm">
-                      <input
+                      {/* <input
                         type="text"
                         name="sunet-id"
                         id="sunet-id"
@@ -226,7 +247,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                       />
                       <span className="inline-flex items-center px-3 text-sm text-gray-500 bg-gray-50 rounded-r-md border border-l-0 border-gray-300">
                         @stanford.edu
-                      </span>
+                      </span> */}
                     </div>
                   </div>
                 </div>
