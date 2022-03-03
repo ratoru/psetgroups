@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import toast, { Toaster } from 'react-hot-toast';
+
 import { AvailabiltyGrid } from './AvailabilityGrid';
 import { Radio, Option } from './Radio';
 
@@ -114,9 +116,9 @@ const expertiseOptions: Option[] = [
   },
 ];
 
-function checkSubmission(values: Array<any | undefined>): boolean {
+function checkSubmission(values: Array<string | number>): boolean {
   for (let i = 0, l = values.length; i < l; i += 1) {
-    if (values[i] === undefined) {
+    if (typeof values[i] === 'number' && values[i] === -100) {
       return false;
     }
     if (typeof values[i] === 'string' && values[i] === '') {
@@ -135,15 +137,16 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
 }) => {
   const [name, setName] = useState<string>('');
   // const [sunet, setSunet] = useState<string>('');
-  const [year, setYear] = useState(years[0]);
-  const [dorm, setDorm] = useState(dorms[0]);
+  const [year, setYear] = useState('Freshman');
+  const [dorm, setDorm] = useState('Wilbur');
   const [code, setCode] = useState<string>('');
 
-  const [start, setStart] = useState<Option | undefined>();
-  const [workstyle, setWorkstyle] = useState<Option | undefined>();
-  const [communication, setCommunication] = useState<Option | undefined>();
-  const [commitment, setCommitment] = useState<Option | undefined>();
-  const [expertise, setExpertise] = useState<Option | undefined>();
+  const unselected = -100;
+  const [start, setStart] = useState<number>(unselected);
+  const [workstyle, setWorkstyle] = useState<number>(unselected);
+  const [communication, setCommunication] = useState<number>(unselected);
+  const [commitment, setCommitment] = useState<number>(unselected);
+  const [expertise, setExpertise] = useState<number>(unselected);
 
   const avTimes = times.map(() => {
     return days.map(() => {
@@ -151,6 +154,29 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
     });
   });
   const [availableTimes, setAvailableTimes] = useState<number[][]>(avTimes);
+
+  /* The POST method adds a new entry in the mongodb database. */
+  const postData = async (form: any) => {
+    try {
+      const res = await fetch('/api/preferences', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+
+      // Throw error with status code in case Fetch API req failed
+      if (!res.ok) {
+        throw new Error(res.status.toString());
+      }
+
+      onClick(true);
+    } catch (error) {
+      toast.error('Something went wrong.');
+    }
+  };
 
   let button: JSX.Element;
   if (
@@ -173,7 +199,20 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
         className="inline-flex justify-center py-2 px-6 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
         onClick={(e) => {
           e.preventDefault();
-          onClick(true);
+          const flattened = availableTimes.flat();
+          const submitted = {
+            name,
+            year,
+            dorm,
+            code,
+            start,
+            workstyle,
+            communication,
+            commitment,
+            expertise,
+            flattened,
+          };
+          postData(submitted);
         }}
       >
         Save
@@ -192,7 +231,8 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   }
 
   return (
-    <form action="#" method="POST" className="py-20 px-6 mx-auto max-w-6xl">
+    <form method="POST" className="py-20 px-6 mx-auto max-w-6xl">
+      <Toaster position="top-center" />
       <div>
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">

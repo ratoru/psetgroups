@@ -42,5 +42,11 @@
     }
   },
   "exclude": ["./out/**/*", "./node_modules/**/*"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/api/preferences/index.js",
+    "src/utils/dbConnect.js"
+  ]
 }

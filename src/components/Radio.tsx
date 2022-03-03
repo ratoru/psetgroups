@@ -2,15 +2,15 @@ import { RadioGroup } from '@headlessui/react';
 
 export interface Option {
   name: string;
-  val: string | number;
+  val: number;
   description?: string;
 }
 
 interface RadioProps {
   label: string;
   options: Option[];
-  selected: Option | undefined;
-  onClick: (sel: Option) => void;
+  selected: number;
+  onClick: (sel: number) => void;
 }
 
 export const Radio: React.FC<RadioProps> = ({
