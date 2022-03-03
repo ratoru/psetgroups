@@ -135,10 +135,12 @@ interface PreferencesFormProps {
 export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   onClick,
 }) => {
+  const [isLoading, setLoading] = useState(false);
+
   const [name, setName] = useState<string>('');
   // const [sunet, setSunet] = useState<string>('');
-  const [year, setYear] = useState('Freshman');
-  const [dorm, setDorm] = useState('Wilbur');
+  const [year, setYear] = useState<string>('Freshman');
+  const [dorm, setDorm] = useState<string>('Wilbur');
   const [code, setCode] = useState<string>('');
 
   const unselected = -100;
@@ -157,6 +159,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
 
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form: any) => {
+    setLoading(true);
     try {
       const res = await fetch('/api/preferences', {
         method: 'POST',
@@ -171,9 +174,10 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
       if (!res.ok) {
         throw new Error(res.status.toString());
       }
-
+      setLoading(false);
       onClick(true);
     } catch (error) {
+      setLoading(false);
       toast.error('Something went wrong.');
     }
   };
@@ -196,7 +200,8 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
     button = (
       <button
         type="submit"
-        className="inline-flex justify-center py-2 px-6 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
+        className="inline-flex items-center py-2 px-6 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm"
+        disabled={isLoading}
         onClick={(e) => {
           e.preventDefault();
           const flattened = availableTimes.flat();
@@ -215,7 +220,29 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
           postData(submitted);
         }}
       >
-        Save
+        {isLoading && (
+          <svg
+            className="mr-3 -ml-1 w-5 h-5 text-white animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        )}
+        {isLoading ? 'Processing...' : 'Save'}
       </button>
     );
   } else {
