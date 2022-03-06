@@ -1,127 +1,127 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
-import { AvailabiltyGrid } from './AvailabilityGrid';
-import { Radio, Option } from './Radio';
+import { AvailabiltyGrid } from "./AvailabilityGrid";
+import { Radio, Option } from "./Radio";
 
-const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 const times = [
-  '8-10',
-  '10-12',
-  '12-14',
-  '14-16',
-  '16-18',
-  '18-20',
-  '20-22',
-  '22-24',
+  "8-10",
+  "10-12",
+  "12-14",
+  "14-16",
+  "16-18",
+  "18-20",
+  "20-22",
+  "22-24",
 ];
 
 const dorms: string[] = [
-  'Wilbur',
-  'Stern',
-  'Flomo',
-  'EVGR A',
-  'Roble',
-  'The Row',
+  "Wilbur",
+  "Stern",
+  "Flomo",
+  "EVGR A",
+  "Roble",
+  "The Row",
 ];
 
-const years: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Grad'];
+const years: string[] = ["Freshman", "Sophomore", "Junior", "Senior", "Grad"];
 
 const startOptions: Option[] = [
   {
-    name: 'Early',
+    name: "Early",
     val: -1,
-    description: 'As soon as the assignment comes out',
+    description: "As soon as the assignment comes out",
   },
   {
-    name: 'Normal',
+    name: "Normal",
     val: 0,
-    description: 'Throughout the week',
+    description: "Throughout the week",
   },
   {
-    name: 'Late',
+    name: "Late",
     val: 1,
-    description: 'Right before the deadline',
+    description: "Right before the deadline",
   },
 ];
 
 const workstyleOptions: Option[] = [
   {
-    name: 'Together',
+    name: "Together",
     val: -1,
-    description: 'Solve all problems together',
+    description: "Solve all problems together",
   },
   {
-    name: 'Strategies',
+    name: "Strategies",
     val: 0,
-    description: 'Discuss strategies and help each other when stuck',
+    description: "Discuss strategies and help each other when stuck",
   },
   {
-    name: 'Independent',
+    name: "Independent",
     val: 1,
-    description: 'Work independently, but check answers',
+    description: "Work independently, but check answers",
   },
 ];
 
 const communicationOptions: Option[] = [
   {
-    name: 'In Person',
+    name: "In Person",
     val: -1,
   },
   {
-    name: 'Video',
+    name: "Video",
     val: 0,
   },
   {
-    name: 'Text',
+    name: "Text",
     val: 1,
   },
 ];
 
 const commitmentOptions: Option[] = [
   {
-    name: 'Low',
+    name: "Low",
     val: -1,
     description: "I'm still shopping and/or not registered",
   },
   {
-    name: 'Medium',
+    name: "Medium",
     val: 0,
-    description: 'Other courses might be a higher priority',
+    description: "Other courses might be a higher priority",
   },
   {
-    name: 'High',
+    name: "High",
     val: 1,
-    description: 'This course is a top priority for me',
+    description: "This course is a top priority for me",
   },
 ];
 
 const expertiseOptions: Option[] = [
   {
-    name: 'Beginner',
+    name: "Beginner",
     val: -1,
-    description: 'This will be all new for me',
+    description: "This will be all new for me",
   },
   {
-    name: 'Average Joe',
+    name: "Average Joe",
     val: 0,
-    description: 'I have seen some of this material before',
+    description: "I have seen some of this material before",
   },
   {
-    name: 'Seasoned',
+    name: "Seasoned",
     val: 1,
-    description: 'I am quite comfortable with this material',
+    description: "I am quite comfortable with this material",
   },
 ];
 
 function checkSubmission(values: Array<string | number>): boolean {
   for (let i = 0, l = values.length; i < l; i += 1) {
-    if (typeof values[i] === 'number' && values[i] === -100) {
+    if (typeof values[i] === "number" && values[i] === -100) {
       return false;
     }
-    if (typeof values[i] === 'string' && values[i] === '') {
+    if (typeof values[i] === "string" && values[i] === "") {
       return false;
     }
   }
@@ -137,11 +137,11 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
 }) => {
   const [isLoading, setLoading] = useState(false);
 
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>("");
   // const [sunet, setSunet] = useState<string>('');
-  const [year, setYear] = useState<string>('Freshman');
-  const [dorm, setDorm] = useState<string>('Wilbur');
-  const [code, setCode] = useState<string>('');
+  const [year, setYear] = useState<string>("Freshman");
+  const [dorm, setDorm] = useState<string>("Wilbur");
+  const [code, setCode] = useState<string>("");
 
   const unselected = -100;
   const [start, setStart] = useState<number>(unselected);
@@ -161,11 +161,11 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   const postData = async (form: any) => {
     setLoading(true);
     try {
-      const res = await fetch('/api/preferences', {
-        method: 'POST',
+      const res = await fetch("/api/preferences", {
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
       });
@@ -178,7 +178,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
       onClick(true);
     } catch (error) {
       setLoading(false);
-      toast.error('Something went wrong.');
+      toast.error("Something went wrong.");
     }
   };
 
@@ -204,7 +204,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
         disabled={isLoading}
         onClick={(e) => {
           e.preventDefault();
-          const flattened = availableTimes.flat();
+          const availibility = availableTimes.flat();
           const submitted = {
             name,
             year,
@@ -215,7 +215,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
             communication,
             commitment,
             expertise,
-            flattened,
+            availibility,
           };
           postData(submitted);
         }}
@@ -242,7 +242,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
             ></path>
           </svg>
         )}
-        {isLoading ? 'Processing...' : 'Save'}
+        {isLoading ? "Processing..." : "Save"}
       </button>
     );
   } else {
