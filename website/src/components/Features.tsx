@@ -18,21 +18,21 @@ export const Features: React.FC = () => {
             Just enter your availability throughout the week and preferences
             over your partner and we&apos;ll do the rest.
           </p>
-          <ul className="p-0 m-0 leading-6 border-0 border-gray-300">
-            <li className="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-              <span className="inline-flex justify-center items-center mr-2 w-6 h-6 text-white bg-indigo-300 rounded-full">
+          <ul className="p-0 m-0 space-y-4 leading-6 border-0 border-gray-300">
+            <li className="box-border flex relative pl-0 text-left text-gray-500 align-middle border-solid">
+              <span className="inline-flex justify-center items-center mr-4 w-6 h-6 text-white bg-indigo-300 rounded-full">
                 <span className="text-sm font-bold">✓</span>
               </span>{' '}
               Similar availability throughout the week
             </li>
-            <li className="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-              <span className="inline-flex justify-center items-center mr-2 w-6 h-6 text-white bg-indigo-300 rounded-full">
+            <li className="box-border flex relative pl-0 text-left text-gray-500 align-middle border-solid">
+              <span className="inline-flex justify-center items-center mr-4 w-6 h-6 text-white bg-indigo-300 rounded-full">
                 <span className="text-sm font-bold">✓</span>
               </span>{' '}
               Connect on a personal level
             </li>
-            <li className="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-              <span className="inline-flex justify-center items-center mr-2 w-6 h-6 text-white bg-indigo-300 rounded-full">
+            <li className="box-border flex relative pl-0 text-left text-gray-500 align-middle border-solid">
+              <span className="inline-flex justify-center items-center mr-4 w-6 h-6 text-white bg-indigo-300 rounded-full">
                 <span className="text-sm font-bold">✓</span>
               </span>{' '}
               Shared goals in the class
@@ -50,21 +50,21 @@ export const Features: React.FC = () => {
             asynchronously. Additionally, we don&apos;t share your data with
             anyone.
           </p>
-          <ul className="p-0 m-0 leading-6 border-0 border-gray-300">
-            <li className="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-              <span className="inline-flex justify-center items-center mr-2 w-6 h-6 text-white bg-indigo-300 rounded-full">
+          <ul className="p-0 m-0 space-y-4 leading-6 border-0 border-gray-300">
+            <li className="box-border flex relative pl-0 text-left text-gray-500 align-middle border-solid">
+              <span className="inline-flex justify-center items-center mr-4 w-6 h-6 text-white bg-indigo-300 rounded-full">
                 <span className="text-sm font-bold">✓</span>
               </span>{' '}
               No need to reply first
             </li>
-            <li className="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-              <span className="inline-flex justify-center items-center mr-2 w-6 h-6 text-white bg-indigo-300 rounded-full">
+            <li className="box-border flex relative pl-0 text-left text-gray-500 align-middle border-solid">
+              <span className="inline-flex justify-center items-center mr-4 w-6 h-6 text-white bg-indigo-300 rounded-full">
                 <span className="text-sm font-bold">✓</span>
               </span>{' '}
               Classes are handled independtly
             </li>
-            <li className="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
-              <span className="inline-flex justify-center items-center mr-2 w-6 h-6 text-white bg-indigo-300 rounded-full">
+            <li className="box-border flex relative pl-0 text-left text-gray-500 align-middle border-solid">
+              <span className="inline-flex justify-center items-center mr-4 w-6 h-6 text-white bg-indigo-300 rounded-full">
                 <span className="text-sm font-bold">✓</span>
               </span>{' '}
               Your data is safe

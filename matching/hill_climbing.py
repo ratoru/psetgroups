@@ -73,9 +73,8 @@ class HillClimbing:
                 bestNeighbour = neighbour
         return bestNeighbour, bestScore
 
-    def hillClimbing(self):
+    def hillClimbing(self) -> tuple[List[int], float]:
         currentSolution = self.__randomSolution()
-        print(currentSolution)
         currentScore = self.__matchingScore(currentSolution)
         neighbours = self.__getNeighbours(currentSolution)
         bestNeighbour, bestNeighbourScore = self.__getBestNeighbour(

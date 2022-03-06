@@ -2,14 +2,34 @@ import { FaqCard } from './FaqCard';
 
 const features = [
   {
-    question: 'How does it work?',
+    question: 'What do I have to do?',
     answer:
       'You just have to enter your class code and answer a few questions about your availability and preferences. After that we will generate pset groups for you.',
+  },
+  {
+    question: 'How do you match me with a partner?',
+    answer:
+      'Based on the information you and others in your class enter, we can calculate the quality of a pairing between you and each of your classmates. Using a gradient ascent method, we then find the most efficient way to match all partnerships in the class.',
   },
   {
     question: 'Why do I have to wait to get a partner?',
     answer:
       'The more people are in the pool, the better your partner will be. Additionally, we need time to run our algorithm in order to ensure we find a good match for you.',
+  },
+  {
+    question: 'What is your methodology based on?',
+    answer:
+      'We conducted a survey to determine the qualities that Stanford students are looking for in their teammates, and we weight pairing results based on the trends identified in our study.',
+  },
+  {
+    question: 'Can I be paired with a friend?',
+    answer:
+      'Ask your instructor! The purpose of this matching site is to calculate the best possible pairings, which may not be your friend. If your instructor allows it, you can elect to match with a friend outside of this tool. Just remember, the best friends don’t make the best pset partners! (We do)',
+  },
+  {
+    question: 'Will my professor see the data I submit?',
+    answer:
+      'No. All data you submit is only used for pairing you with partners, and it will never be shared with your professor or others in the class.',
   },
 ];
 

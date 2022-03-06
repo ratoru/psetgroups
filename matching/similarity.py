@@ -16,8 +16,6 @@ def get_similarity(f1: Form, f2: Form) -> float:
     """
     time_overlap = np.dot(np.array(f1.availibility), np.array(f2.availibility))
     ec_dst = weighted_ed(to_vec(f1), to_vec(f2))
-    # return 1 / (1 + ec_dst) if time_overlap >= 3 else 0
-    # availibility is broken. doesn't get put to mongodb
     return 1 / (1 + ec_dst) if time_overlap >= 3 else 0
 
 
@@ -31,20 +29,38 @@ def weighted_ed(x: np.array, y: np.array) -> float:
 
 
 def to_vec(f: Form) -> np.array:
-    return np.array([convert_year(f.year), convert_dorm(f.dorm), f.start, f.workstyle, f.communication, f.commitment, f.expertise])
+    """Converts a form into a normalized vector where each entry between [0, 1].
+
+    Args:
+        f (Form): the form to be converted
+
+    Returns:
+        np.array: the normalized vector
+    """
+    return np.array([convert_year(f.year), convert_dorm(f.dorm), f.start / 2, f.workstyle / 2, f.communication / 2, f.commitment / 2, f.expertise / 2])
 
 
-def convert_year(year: str) -> int:
+def convert_year(year: str) -> float:
     if year == 'Freshman':
-        return 1
+        return 0
     if year == 'Sophomore':
-        return 2
+        return 0.25
     if year == 'Junior':
-        return 3
+        return 0.5
     if year == 'Senior':
-        return 4
-    return 5
+        return 0.75
+    return 1
 
 
-def convert_dorm(dorm: str) -> int:
-    return 0
+def convert_dorm(dorm: str) -> float:
+    if dorm == 'EVGR A':
+        return 0
+    if dorm == 'Wilbur':
+        return 0.2
+    if dorm == 'Stern':
+        return 0.4
+    if dorm == 'The Row':
+        return 0.6
+    if dorm == 'Flomo':
+        return 0.8
+    return 1

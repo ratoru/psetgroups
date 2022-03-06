@@ -32,17 +32,17 @@ const years: string[] = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Grad'];
 const startOptions: Option[] = [
   {
     name: 'Early',
-    val: -1,
+    val: 0,
     description: 'As soon as the assignment comes out',
   },
   {
     name: 'Normal',
-    val: 0,
+    val: 1,
     description: 'Throughout the week',
   },
   {
     name: 'Late',
-    val: 1,
+    val: 2,
     description: 'Right before the deadline',
   },
 ];
@@ -50,17 +50,17 @@ const startOptions: Option[] = [
 const workstyleOptions: Option[] = [
   {
     name: 'Together',
-    val: -1,
+    val: 0,
     description: 'Solve all problems together',
   },
   {
     name: 'Strategies',
-    val: 0,
+    val: 1,
     description: 'Discuss strategies and help each other when stuck',
   },
   {
     name: 'Independent',
-    val: 1,
+    val: 2,
     description: 'Work independently, but check answers',
   },
 ];
@@ -68,32 +68,32 @@ const workstyleOptions: Option[] = [
 const communicationOptions: Option[] = [
   {
     name: 'In Person',
-    val: -1,
-  },
-  {
-    name: 'Video',
     val: 0,
   },
   {
-    name: 'Text',
+    name: 'Video',
     val: 1,
+  },
+  {
+    name: 'Text',
+    val: 2,
   },
 ];
 
 const commitmentOptions: Option[] = [
   {
     name: 'Low',
-    val: -1,
+    val: 0,
     description: "I'm still shopping and/or not registered",
   },
   {
     name: 'Medium',
-    val: 0,
+    val: 1,
     description: 'Other courses might be a higher priority',
   },
   {
     name: 'High',
-    val: 1,
+    val: 2,
     description: 'This course is a top priority for me',
   },
 ];
@@ -101,17 +101,17 @@ const commitmentOptions: Option[] = [
 const expertiseOptions: Option[] = [
   {
     name: 'Beginner',
-    val: -1,
+    val: 0,
     description: 'This will be all new for me',
   },
   {
     name: 'Average Joe',
-    val: 0,
+    val: 1,
     description: 'I have seen some of this material before',
   },
   {
     name: 'Seasoned',
-    val: 1,
+    val: 2,
     description: 'I am quite comfortable with this material',
   },
 ];
@@ -299,9 +299,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                     >
                       SUNet ID
                     </label>
-                    <p className="text-sm text-gray-500">
-                      This is a later feature.
-                    </p>
+                    <p className="text-sm text-gray-500">Coming soon!</p>
                     <div className="flex mt-1 rounded-md shadow-sm">
                       {/* <input
                         type="text"
