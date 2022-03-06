@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Confirmation } from "@/components/Confirmation";
-import { PreferencesForm } from "@/components/PreferencesForm";
-import { Meta } from "@/layout/Meta";
-import { Main } from "@/templates/Main";
+import { Confirmation } from '@/components/Confirmation';
+import { PreferencesForm } from '@/components/PreferencesForm';
+import { Meta } from '@/layout/Meta';
+import { Main } from '@/templates/Main';
 
 const About = () => {
   const [submitted, setSubmitted] = useState(false);
