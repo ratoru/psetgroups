@@ -47,22 +47,6 @@ class HillClimbing:
                 neighbours.append(neighbour)
         return neighbours
 
-    # def __getNeighbours(self, solution: List):
-    #     neighbours = []
-    #     for i in range(1, len(solution), 2):
-    #         for j in range(i + 1, len(solution)):
-    #             neighbour = solution.copy()
-    #             neighbour[i] = solution[j]
-    #             neighbour[j] = solution[i]
-    #             neighbours.append(neighbour)
-    #     if (len(solution) % 2 == 1):
-    #         for i in range(0, len(solution) - 1, 2):
-    #             neighbour = solution.copy()
-    #             neighbour[i] = solution[len(solution) - 1]
-    #             neighbour[len(solution) - 1] = solution[i]
-    #             neighbours.append(neighbour)
-    #     return neighbours
-
     def __getBestNeighbour(self, neighbours):
         bestScore = self.__matchingScore(neighbours[0])
         bestNeighbour = neighbours[0]
