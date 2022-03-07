@@ -12,10 +12,15 @@ def test_sim():
         'dorm': 'Wilbur',
         'code': 'pytest',
         'start': 0,
+        'startW': 2,
         'workstyle': 0,
+        'workstyleW': 2,
         'communication': 0,
+        'communicationW': 2,
         'commitment': 0,
+        'commitmentW': 0,
         'expertise': 0,
+        'expertiseW': 2,
         'availibility': [1 for i in range(56)]
     },
         {
@@ -24,10 +29,15 @@ def test_sim():
         'dorm': 'Wilbur',
         'code': 'pytest',
         'start': 0,
+        'startW': 2,
         'workstyle': 0,
+        'workstyleW': 2,
         'communication': 0,
+        'communicationW': 2,
         'commitment': 0,
+        'commitmentW': 0,
         'expertise': 0,
+        'expertiseW': 2,
         'availibility': [1 for i in range(56)]
     }]
     assert get_similarity(Form(**data[0]), Form(**data[1])) == 1
@@ -40,10 +50,15 @@ def test_sim2():
         'dorm': 'Wilbur',
         'code': 'pytest',
         'start': 0,
+        'startW': 2,
         'workstyle': 0,
+        'workstyleW': 2,
         'communication': 0,
+        'communicationW': 2,
         'commitment': 0,
+        'commitmentW': 0,
         'expertise': 0,
+        'expertiseW': 2,
         'availibility': [0 for i in range(56)]
     },
         {
@@ -52,10 +67,15 @@ def test_sim2():
         'dorm': 'Wilbur',
         'code': 'pytest',
         'start': 0,
+        'startW': 2,
         'workstyle': 0,
+        'workstyleW': 2,
         'communication': 0,
+        'communicationW': 2,
         'commitment': 0,
+        'commitmentW': 0,
         'expertise': 0,
+        'expertiseW': 2,
         'availibility': [1 for i in range(56)]
     }]
     assert get_similarity(Form(**data[0]), Form(**data[1])) == 0
@@ -68,10 +88,15 @@ def test_hc():
         'dorm': 'Wilbur',
         'code': 'pytest',
         'start': 0,
+        'startW': 2,
         'workstyle': 0,
+        'workstyleW': 2,
         'communication': 0,
+        'communicationW': 2,
         'commitment': 0,
+        'commitmentW': 0,
         'expertise': 0,
+        'expertiseW': 2,
         'availibility': [1 for i in range(56)]
     },
         {
@@ -80,10 +105,15 @@ def test_hc():
         'dorm': 'Wilbur',
         'code': 'pytest',
         'start': 0,
+        'startW': 2,
         'workstyle': 0,
+        'workstyleW': 2,
         'communication': 0,
+        'communicationW': 2,
         'commitment': 0,
+        'commitmentW': 0,
         'expertise': 0,
+        'expertiseW': 2,
         'availibility': [1 for i in range(56)]
     },
         {
@@ -92,10 +122,15 @@ def test_hc():
         'dorm': 'The Row',
         'code': 'pytest',
         'start': 2,
+        'startW': 2,
         'workstyle': 2,
+        'workstyleW': 2,
         'communication': 2,
+        'communicationW': 2,
         'commitment': 2,
+        'commitmentW': 2,
         'expertise': 0,
+        'expertiseW': 0,
         'availibility': [1 for i in range(56)]
     },
         {
@@ -104,10 +139,15 @@ def test_hc():
         'dorm': 'The Row',
         'code': 'pytest',
         'start': 2,
+        'startW': 1,
         'workstyle': 2,
+        'workstyleW': 2,
         'communication': 2,
+        'communicationW': 2,
         'commitment': 2,
+        'commitmentW': 2,
         'expertise': 2,
+        'expertiseW': 2,
         'availibility': [1 for i in range(56)]
     },
         {
@@ -116,10 +156,15 @@ def test_hc():
         'dorm': 'EVGR A',
         'code': 'pytest',
         'start': 2,
+        'startW': 2,
         'workstyle': 1,
+        'workstyleW': 1,
         'communication': 0,
+        'communicationW': 0,
         'commitment': 1,
+        'commitmentW': 1,
         'expertise': 1,
+        'expertiseW': 1,
         'availibility': [1 for i in range(56)]
     },
         {
@@ -128,10 +173,15 @@ def test_hc():
         'dorm': 'Wilbur',
         'code': 'pytest',
         'start': 1,
+        'startW': 1,
         'workstyle': 2,
+        'workstyleW': 2,
         'communication': 2,
+        'communicationW': 2,
         'commitment': 1,
+        'commitmentW': 1,
         'expertise': 1,
+        'expertiseW': 1,
         'availibility': [1 for i in range(56)]
     },
     ]

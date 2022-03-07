@@ -15,17 +15,14 @@ def get_similarity(f1: Form, f2: Form) -> float:
         float: the similarity score between [0, 1]
     """
     time_overlap = np.dot(np.array(f1.availibility), np.array(f2.availibility))
-    ec_dst = weighted_ed(to_vec(f1), to_vec(f2))
+    ec_dst = weighted_ed(to_vec(f1), to_vec(f2), get_weights(f1, f2))
     return 1 / (1 + ec_dst) if time_overlap >= 3 else 0
 
 
-def weighted_ed(x: np.array, y: np.array) -> float:
-    return np.linalg.norm(x-y)
-
-
-# def weightedL2(a,b,w):
-#     q = a-b
-#     return np.sqrt((w*q*q).sum())
+def weighted_ed(x: np.array, y: np.array, w: np.array) -> float:
+    # return np.linalg.norm(x-y)
+    q = x - y
+    return np.sqrt((w*q*q).sum())
 
 
 def to_vec(f: Form) -> np.array:
@@ -38,6 +35,20 @@ def to_vec(f: Form) -> np.array:
         np.array: the normalized vector
     """
     return np.array([convert_year(f.year), convert_dorm(f.dorm), f.start / 2, f.workstyle / 2, f.communication / 2, f.commitment / 2, f.expertise / 2])
+
+
+def get_weights(f1: Form, f2: Form) -> np.array:
+    """Returns the weights needed for the weighted euclidian distance.
+    Defines weights as w = max(w_1, w_2).
+
+    Args:
+        f1 (Form): first form
+        f2 (Form): second form
+
+    Returns:
+        np.array: weights array with the same dimensions as to_vec
+    """
+    return np.array([1, 1, max(f1.startW, f2.startW) / 2, max(f1.workstyleW, f2.workstyleW) / 2, max(f1.communicationW, f2.communicationW) / 2, max(f1.commitmentW, f2.commitmentW) / 2, max(f1.expertiseW, f2.expertiseW) / 2])
 
 
 def convert_year(year: str) -> float:

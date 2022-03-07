@@ -13,8 +13,13 @@ class Form(BaseModel):
     dorm: str
     code: str
     start: int
+    startW: int
     workstyle: int
+    workstyleW: int
     communication: int
+    communicationW: int
     commitment: int
+    commitmentW: int
     expertise: int
+    expertiseW: int
     availibility: List[int]
