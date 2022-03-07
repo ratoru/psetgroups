@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 5px;
+  border-radius: 5px;
+  outline: 0;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: rgb(99,97,160);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid rgb(249, 250, 251);
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}​
+  input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: rgb(249, 250, 251);
+    border: 2px solid rgb(99,97,160);
+  }
+  input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.4);
+  }

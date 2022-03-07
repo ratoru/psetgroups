@@ -11,6 +11,8 @@ interface RadioProps {
   options: Option[];
   selected: number;
   onClick: (sel: number) => void;
+  weight: number;
+  onWeightChange: (w: number) => void;
 }
 
 export const Radio: React.FC<RadioProps> = ({
@@ -18,6 +20,8 @@ export const Radio: React.FC<RadioProps> = ({
   options,
   selected,
   onClick,
+  weight,
+  onWeightChange,
 }) => {
   return (
     <div className="w-full">
@@ -94,6 +98,24 @@ export const Radio: React.FC<RadioProps> = ({
           ))}
         </div>
       </RadioGroup>
+      <div className="mt-4 mb-2 text-sm font-medium text-gray-500">
+        Importance
+      </div>
+      <div className="flex flex-row items-center">
+        <p className="mr-4 text-sm text-gray-500">Low</p>
+        <input
+          type="range"
+          name={`Importance: ${label}`}
+          id={`${label}-i`}
+          min={0}
+          max={4}
+          step={1}
+          value={weight}
+          onChange={(e) => onWeightChange(parseInt(e.target.value, 10))}
+          className="range-style"
+        />
+        <p className="ml-4 text-sm text-gray-500">High</p>
+      </div>
     </div>
   );
 };

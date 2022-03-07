@@ -8,10 +8,15 @@ interface Form {
   dorm: string;
   code: string;
   start: number;
+  startW: number;
   workstyle: number;
+  workstyleW: number;
   communication: number;
+  communicationW: number;
   commitment: number;
+  commitmentW: number;
   expertise: number;
+  expertiseW: number;
   availibility: number[];
 }
 
@@ -50,7 +55,15 @@ const FormSchema = new mongoose.Schema<Form>({
     type: Number,
     required: true,
   },
+  startW: {
+    type: Number,
+    required: true,
+  },
   workstyle: {
+    type: Number,
+    required: true,
+  },
+  workstyleW: {
     type: Number,
     required: true,
   },
@@ -58,11 +71,23 @@ const FormSchema = new mongoose.Schema<Form>({
     type: Number,
     required: true,
   },
+  communicationW: {
+    type: Number,
+    required: true,
+  },
   commitment: {
     type: Number,
     required: true,
   },
+  commitmentW: {
+    type: Number,
+    required: true,
+  },
   expertise: {
+    type: Number,
+    required: true,
+  },
+  expertiseW: {
     type: Number,
     required: true,
   },

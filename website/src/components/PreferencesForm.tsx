@@ -145,10 +145,15 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
 
   const unselected = -100;
   const [start, setStart] = useState<number>(unselected);
+  const [startW, setStartW] = useState<number>(2);
   const [workstyle, setWorkstyle] = useState<number>(unselected);
+  const [workstyleW, setWorkstyleW] = useState<number>(2);
   const [communication, setCommunication] = useState<number>(unselected);
+  const [communicationW, setCommunicationW] = useState<number>(2);
   const [commitment, setCommitment] = useState<number>(unselected);
+  const [commitmentW, setCommitmentW] = useState<number>(2);
   const [expertise, setExpertise] = useState<number>(unselected);
+  const [expertiseW, setExpertiseW] = useState<number>(2);
 
   const avTimes = times.map(() => {
     return days.map(() => {
@@ -211,10 +216,15 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
             dorm,
             code,
             start,
+            startW,
             workstyle,
+            workstyleW,
             communication,
+            communicationW,
             commitment,
+            commitmentW,
             expertise,
+            expertiseW,
             availibility,
           };
           postData(submitted);
@@ -385,6 +395,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                     className="block mt-2 w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm sm:text-sm"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
+                    autoComplete="off"
                   />
                 </div>
               </div>
@@ -414,36 +425,46 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
             <div className="overflow-hidden shadow sm:rounded-md">
-              <div className="py-5 px-4 space-y-6 bg-gray-50 sm:p-6">
+              <div className="py-5 px-4 space-y-12 bg-gray-50 sm:p-6">
                 <Radio
                   label="When do you start the pset?"
                   options={startOptions}
                   selected={start}
                   onClick={setStart}
+                  weight={startW}
+                  onWeightChange={setStartW}
                 />
                 <Radio
                   label="What's your collaboration style?"
                   options={workstyleOptions}
                   selected={workstyle}
                   onClick={setWorkstyle}
+                  weight={workstyleW}
+                  onWeightChange={setWorkstyleW}
                 />
                 <Radio
                   label="Preferred Communication"
                   options={communicationOptions}
                   selected={communication}
                   onClick={setCommunication}
+                  weight={communicationW}
+                  onWeightChange={setCommunicationW}
                 />
                 <Radio
                   label="What's your commitment level?"
                   options={commitmentOptions}
                   selected={commitment}
                   onClick={setCommitment}
+                  weight={commitmentW}
+                  onWeightChange={setCommitmentW}
                 />
                 <Radio
                   label="How comfortable are you in the class?"
                   options={expertiseOptions}
                   selected={expertise}
                   onClick={setExpertise}
+                  weight={expertiseW}
+                  onWeightChange={setExpertiseW}
                 />
               </div>
             </div>
