@@ -11,6 +11,7 @@ class Form(BaseModel):
     # sunet: str
     year: str
     dorm: str
+    dormW: int
     code: str
     start: int
     startW: int
@@ -22,4 +23,10 @@ class Form(BaseModel):
     commitmentW: int
     expertise: int
     expertiseW: int
+    personality: int
+    personalityW: int
+    sleep: int
+    sleepW: int
+    office: int
+    officeW: int
     availibility: List[int]

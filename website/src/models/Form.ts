@@ -6,6 +6,7 @@ interface Form {
   // sunet: string;
   year: string;
   dorm: string;
+  dormW: number;
   code: string;
   start: number;
   startW: number;
@@ -17,6 +18,12 @@ interface Form {
   commitmentW: number;
   expertise: number;
   expertiseW: number;
+  personality: number;
+  personalityW: number;
+  sleep: number;
+  sleepW: number;
+  office: number;
+  officeW: number;
   availibility: number[];
 }
 
@@ -44,6 +51,10 @@ const FormSchema = new mongoose.Schema<Form>({
     type: String,
     required: [true, 'Please specify your dorm.'],
     maxlength: [30, 'Dorm specified cannot be more than 30 characters.'],
+  },
+  dormW: {
+    type: Number,
+    required: true,
   },
   code: {
     /* The class code */
@@ -88,6 +99,30 @@ const FormSchema = new mongoose.Schema<Form>({
     required: true,
   },
   expertiseW: {
+    type: Number,
+    required: true,
+  },
+  personality: {
+    type: Number,
+    required: true,
+  },
+  personalityW: {
+    type: Number,
+    required: true,
+  },
+  sleep: {
+    type: Number,
+    required: true,
+  },
+  sleepW: {
+    type: Number,
+    required: true,
+  },
+  office: {
+    type: Number,
+    required: true,
+  },
+  officeW: {
     type: Number,
     required: true,
   },

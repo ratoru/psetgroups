@@ -116,6 +116,73 @@ const expertiseOptions: Option[] = [
   },
 ];
 
+const personalityOptions: Option[] = [
+  {
+    name: 'Introvert',
+    val: 0,
+    description: "I'm happy enough in my own company",
+  },
+  {
+    name: 'Ambivert',
+    val: 1,
+    description: "I'm a little bit of both",
+  },
+  {
+    name: 'Extrovert',
+    val: 2,
+    description: 'I thrive in crowded places',
+  },
+];
+
+const sleepOptions: Option[] = [
+  {
+    name: 'Early Bird',
+    val: 0,
+    description: 'Early to bed, early to rise',
+  },
+  {
+    name: 'Middle Ground',
+    val: 1,
+    description: 'My sleep schedule is pretty average',
+  },
+  {
+    name: 'Night Owl',
+    val: 2,
+    description: 'I like to burn the midnight oil',
+  },
+];
+
+const livingOptions: Option[] = [
+  {
+    name: 'No',
+    val: 0,
+    description: 'Campus is small',
+  },
+  {
+    name: 'Yes',
+    val: 1,
+    description: 'Campus is big',
+  },
+];
+
+const officeOptions: Option[] = [
+  {
+    name: 'No',
+    val: 0,
+    description: 'What even are office hours?',
+  },
+  {
+    name: 'Sometimes',
+    val: 1,
+    description: 'Only when I get really stuck',
+  },
+  {
+    name: 'Every Week',
+    val: 2,
+    description: "I'm a regular",
+  },
+];
+
 function checkSubmission(values: Array<string | number>): boolean {
   for (let i = 0, l = values.length; i < l; i += 1) {
     if (typeof values[i] === 'number' && values[i] === -100) {
@@ -128,6 +195,10 @@ function checkSubmission(values: Array<string | number>): boolean {
   return true;
 }
 
+function checkAvaililbility(times2d: number[][]): boolean {
+  return times2d.flat().reduce((partialSum, a) => partialSum + a, 0) >= 2;
+}
+
 interface PreferencesFormProps {
   onClick: (val: boolean) => void;
 }
@@ -135,15 +206,16 @@ interface PreferencesFormProps {
 export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   onClick,
 }) => {
+  const unselected = -100;
   const [isLoading, setLoading] = useState(false);
 
   const [name, setName] = useState<string>('');
   // const [sunet, setSunet] = useState<string>('');
   const [year, setYear] = useState<string>('Freshman');
   const [dorm, setDorm] = useState<string>('Wilbur');
+  const [dormW, setDormW] = useState<number>(unselected);
   const [code, setCode] = useState<string>('');
 
-  const unselected = -100;
   const [start, setStart] = useState<number>(unselected);
   const [startW, setStartW] = useState<number>(2);
   const [workstyle, setWorkstyle] = useState<number>(unselected);
@@ -154,6 +226,12 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
   const [commitmentW, setCommitmentW] = useState<number>(2);
   const [expertise, setExpertise] = useState<number>(unselected);
   const [expertiseW, setExpertiseW] = useState<number>(2);
+  const [personality, setPersonality] = useState<number>(unselected);
+  const [personalityW, setPersonalityW] = useState<number>(2);
+  const [sleep, setSleep] = useState<number>(unselected);
+  const [sleepW, setSleepW] = useState<number>(2);
+  const [office, setOffice] = useState<number>(unselected);
+  const [officeW, setOfficeW] = useState<number>(2);
 
   const avTimes = times.map(() => {
     return days.map(() => {
@@ -194,13 +272,18 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
       // sunet,
       year,
       dorm,
+      dormW,
       code,
       start,
       workstyle,
       communication,
       commitment,
       expertise,
-    ])
+      personality,
+      sleep,
+      office,
+    ]) &&
+    checkAvaililbility(availableTimes)
   ) {
     button = (
       <button
@@ -210,11 +293,13 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
         onClick={(e) => {
           e.preventDefault();
           const availibility = availableTimes.flat();
+          const newCode = code.toLowerCase();
           const submitted = {
             name,
             year,
             dorm,
-            code,
+            dormW,
+            newCode,
             start,
             startW,
             workstyle,
@@ -225,6 +310,12 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
             commitmentW,
             expertise,
             expertiseW,
+            personality,
+            personalityW,
+            sleep,
+            sleepW,
+            office,
+            officeW,
             availibility,
           };
           postData(submitted);
@@ -415,7 +506,76 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
-                Partner Information
+                Personal Habits
+              </h3>
+              <p className="mt-1 text-sm text-gray-600">
+                Tell us about the habits you hold and the ones you are looking
+                for in your partner.
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 md:col-span-2 md:mt-0">
+            <div className="overflow-hidden shadow sm:rounded-md">
+              <div className="py-5 px-4 space-y-12 bg-gray-50 sm:p-6">
+                <Radio
+                  label="What's your collaboration style?"
+                  options={workstyleOptions}
+                  selected={workstyle}
+                  onClick={setWorkstyle}
+                  weight={workstyleW}
+                  onWeightChange={setWorkstyleW}
+                />
+                <Radio
+                  label="Preferred Communication"
+                  options={communicationOptions}
+                  selected={communication}
+                  onClick={setCommunication}
+                  weight={communicationW}
+                  onWeightChange={setCommunicationW}
+                />
+                <Radio
+                  label="Would you prefer to be matched with someone who lives close to you on campus?"
+                  options={livingOptions}
+                  selected={dormW}
+                  onClick={setDormW}
+                  withWeight={false}
+                  weight={dormW}
+                  onWeightChange={setDormW}
+                />
+                <Radio
+                  label="How would you describe your personality?"
+                  options={personalityOptions}
+                  selected={personality}
+                  onClick={setPersonality}
+                  weight={personalityW}
+                  onWeightChange={setPersonalityW}
+                />
+                <Radio
+                  label="What's your sleep schedule like?"
+                  options={sleepOptions}
+                  selected={sleep}
+                  onClick={setSleep}
+                  weight={sleepW}
+                  onWeightChange={setSleepW}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden sm:block" aria-hidden="true">
+        <div className="py-5 mt-20">
+          <div className="border-t border-gray-200" />
+        </div>
+      </div>
+
+      <div className="mt-10 sm:mt-0">
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Class Work
               </h3>
               <p className="mt-1 text-sm text-gray-600">
                 Information about the workstyle you prefer and what you are
@@ -435,22 +595,6 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                   onWeightChange={setStartW}
                 />
                 <Radio
-                  label="What's your collaboration style?"
-                  options={workstyleOptions}
-                  selected={workstyle}
-                  onClick={setWorkstyle}
-                  weight={workstyleW}
-                  onWeightChange={setWorkstyleW}
-                />
-                <Radio
-                  label="Preferred Communication"
-                  options={communicationOptions}
-                  selected={communication}
-                  onClick={setCommunication}
-                  weight={communicationW}
-                  onWeightChange={setCommunicationW}
-                />
-                <Radio
                   label="What's your commitment level?"
                   options={commitmentOptions}
                   selected={commitment}
@@ -465,6 +609,14 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
                   onClick={setExpertise}
                   weight={expertiseW}
                   onWeightChange={setExpertiseW}
+                />
+                <Radio
+                  label="Do you attend office hours?"
+                  options={officeOptions}
+                  selected={office}
+                  onClick={setOffice}
+                  weight={officeW}
+                  onWeightChange={setOfficeW}
                 />
               </div>
             </div>

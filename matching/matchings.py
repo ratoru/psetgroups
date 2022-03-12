@@ -18,7 +18,7 @@ if __name__ == '__main__':
     N_RUNS = os.environ.get('N_RUNS')
 
     # Get all forms for the class
-    forms = api.get_forms(API_URL, args.class_code)
+    forms = api.get_forms(API_URL, args.class_code.lower())
     if not forms:
         sys.exit("Coudln't find anything for this class.")
 
