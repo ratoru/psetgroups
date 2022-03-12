@@ -299,7 +299,7 @@ export const PreferencesForm: React.FC<PreferencesFormProps> = ({
             year,
             dorm,
             dormW,
-            newCode,
+            code: newCode,
             start,
             startW,
             workstyle,
