@@ -20,25 +20,29 @@ class Blossom:
 
     def print_blossom(self):
         mate = maxWeightMatching(self.edges)
-        self.__print_solution(self.__transform_matching(mate))
+        matched, unmatched = self.__transform_matching(mate)
+        self.__print_solution(matched, unmatched)
 
-    def __transform_matching(self, mate: List[int]) -> List[Pairing]:
+    def __transform_matching(self, mate: List[int]) -> tuple[List[Pairing], List[str]]:
         """Given a mate list, transforms it into a sorted matching list
 
         Args:
             mate (List[int]): A list such that mate[i] == j if vertex i is matched to vertex j, and mate[i] == -1 if vertex i is not matched.
         """
         matchings_set = set()
+        unmatched = []
         for i in range(len(mate)):
             if mate[i] != -1:
                 p = (i, mate[i]) if i < mate[i] else (mate[i], i)
                 matchings_set.add(p)
+            else:
+                unmatched.append(self.forms[i].name)
         matches = [(self.forms[p1].name, self.forms[p2].name,
                     self.sim_matrix[p1][p2]) for p1, p2 in matchings_set]
         matches.sort(key=lambda x: x[2], reverse=True)
-        return matches
+        return matches, unmatched
 
-    def __print_solution(self, matching: List[Pairing]):
+    def __print_solution(self, matching: List[Pairing], unmatched: List[str]):
         """Given a sorted matching prints it out nicely.
 
         Args:
@@ -52,3 +56,16 @@ class Blossom:
         for m in matching:
             print('{:<20s}{:<20s}{:>10.4f}'.format(
                 m[0], m[1], m[2]))
+        average_score = sum([m[2] for m in matching]) / len(matching)
+        print(dash)
+        print('{:<20s}{:<20s}{:>10.4f}'.format(
+            'Average Score', '', average_score))
+        print('\n' + dash)
+        print('Unmatched')
+        print(dash)
+        if unmatched:
+            for u in unmatched[:-1]:
+                print(u, end=', ')
+            print(unmatched[-1])
+        else:
+            print('None!')

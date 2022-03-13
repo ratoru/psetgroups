@@ -8,4 +8,4 @@ Built with the help of a [Next JS boilerplate](https://github.com/ixartz/Next-js
 
 ## Matching
 
-The matchings are created using the hill climbing algorithm. The score of a matching is the sum of similarity scores of the vectors representing each partner. Read our full paper here.
+The matchings are created using Edmonds' [blossom algorithm](http://jorisvr.nl/article/maximum-matching), where each edge weight is `1 / (1 + d)` where `d` is the weighted euclidian distance between two responses.

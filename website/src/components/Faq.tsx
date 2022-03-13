@@ -9,7 +9,7 @@ const features = [
   {
     question: 'How do you match me with a partner?',
     answer:
-      'Based on the information you and others in your class enter, we can calculate the quality of a pairing between you and each of your classmates. Using a gradient ascent method, we then find the most efficient way to match all partnerships in the class.',
+      "Based on the information you and others in your class enter, we can calculate the quality of a pairing between you and each of your classmates. Using Edmond's blossom algorithm, we then find the most efficient way to match all partnerships in the class.",
   },
   {
     question: 'Why do I have to wait to get a partner?',
